@@ -658,10 +658,12 @@ Transactions.prototype.shared = {
 	getTransactionsCount: function (req, cb) {
 		library.db.query(sql.count).then(function (transactionsCount) {
 			return setImmediate(cb, null, {
-				confirmed: transactionsCount[0].count,
-				multisignature: __private.transactionPool.multisignature.transactions.length,
+				confirmed: transactionsCount[0].count,				
 				unconfirmed: __private.transactionPool.unconfirmed.transactions.length,
-				queued: __private.transactionPool.queued.transactions.length
+				bundled: __private.transactionPool.bundled.transactions.length,
+				queued: __private.transactionPool.queued.transactions.length,
+				multisignature: __private.transactionPool.multisignature.transactions.length,
+				processed: __private.transactionPool.processed
 			});
 		}, function (err) {
 			return setImmediate(cb, 'Unable to count transactions');

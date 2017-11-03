@@ -518,9 +518,11 @@ describe('GET /api/transactions', function () {
 			return getCountPromise('transactions').then(function (res) {
 				node.expect(res).to.have.property('success').to.be.ok;
 				node.expect(res).to.have.property('confirmed').that.is.an('number');
+				node.expect(res).to.have.property('unconfirmed').that.is.an('number');
+				node.expect(res).to.have.property('bundled').that.is.an('number');
 				node.expect(res).to.have.property('queued').that.is.an('number');
 				node.expect(res).to.have.property('multisignature').that.is.an('number');
-				node.expect(res).to.have.property('unconfirmed').that.is.an('number');
+				node.expect(res).to.have.property('processed').that.is.an('number');
 			});
 		});
 	});
